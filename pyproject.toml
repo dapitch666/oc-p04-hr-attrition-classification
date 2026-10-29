@@ -1,0 +1,28 @@
+[project]
+name = "oc-p04-hr-attrition-classification"
+version = "0.1.0"
+description = "Employee attrition classification and SHAP explanations for TechNova Partners HR data"
+readme = "README.md"
+authors = [
+    { name = "Anne Delpla", email = "dapitch666@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "catboost>=1.2.10",
+    "ipykernel>=7.4.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.1.0",
+    "pyarrow>=26.0.0",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18.1",
+    "seaborn>=0.13.2",
+    "shap>=0.54.1",
+]
+
+[dependency-groups]
+dev = [
+    "nbstripout>=0.9.1",
+    "pre-commit>=4.7.0",
+    "ruff>=0.17.3",
+]
