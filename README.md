@@ -95,7 +95,7 @@ data/
 ```text
 .
 ├── data/                   # git-ignored, see "Data"
-├── notebooks/              # planned
+├── notebooks/
 │   ├── 01_exploration.ipynb   # cleaning, join, exploratory data analysis
 │   └── 02_modeling.ipynb      # preparation, baselines, imbalance, threshold, tuning, SHAP
 ├── pyproject.toml
