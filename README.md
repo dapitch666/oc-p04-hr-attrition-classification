@@ -101,3 +101,30 @@ data/
 ├── pyproject.toml
 └── uv.lock
 ```
+
+## Results
+
+- **Reference to beat**: a business rule taken from the exploration, which
+  flags every employee who works overtime or has at least two satisfaction
+  scores at 1. It was built on all the employees, which can only favor it.
+- **Exploration**: 237 of the 1,470 employees left (16%). Overtime (31% leave
+  against 10%), frequent business travel (25% against 8% with none), never
+  joining the savings plan (24%) and satisfaction scores at 1 (21 to 31%) set
+  leavers apart. The last raise and the time since the last promotion show no
+  gap.
+- **Model selection** (5-fold cross-validation, PR-AUC, threshold at a minimum
+  recall of 0.75): the tuned CatBoost and the tuned logistic regression both
+  reach a precision of 0.39 against 0.28 for the rule, and flag 363 employees
+  against 450. CatBoost is kept as the final model, the logistic regression as
+  a benchmark.
+- **Test set** (294 employees, 47 leavers): CatBoost ties with the rule, with a
+  precision of 0.35 against 0.38 and a recall of 0.74 against 0.77, and the
+  bootstrap intervals of both differences include zero. Its PR-AUC drops from
+  0.65 to 0.50, partly because tuning kept the best of 50 trials on the same
+  folds.
+- **Interpretation**: SHAP and the permutation importance on the test set agree
+  on four factors: overtime, satisfaction scores at 1, the savings plan and
+  business travel. The junior profile learned on the training set (job title,
+  experience per employer, age, income) does not hold on the test set. These
+  are associations, not causes, and the target covers every departure, not only
+  resignations.
